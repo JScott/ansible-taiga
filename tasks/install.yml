@@ -37,13 +37,12 @@
     - libpq-dev
     - python3-pip
 
-- name: Install Packages | prepare for pip
-  command: "{{ item }}"
-  with_items:
-    - sudo easy_install -U pip
-    - sudo rm -rf /usr/local/lib/python3.4/dist-packages/requests*
-
+# This fails after succeeding once so we allow errors.
+# Running this manually seems to fix it, I think:
+# - sudo easy_install -U pip
+# - sudo rm -rf /usr/local/lib/python3.4/dist-packages/requests*
 - name: Install Packages | pip
+  ignore_errors: True
   pip:
     executable: /usr/bin/pip3
     requirements: "{{ taiga_back_install_path }}/requirements.txt"
@@ -72,6 +71,13 @@
 - name: Install Packages | npm | package.json
   npm:
     path: "{{ taiga_front_install_path }}"
+
+- name: Configure | gulp | node listening port
+  lineinfile:
+    state: present
+    dest: "{{ taiga_front_install_path }}/gulpfile.coffee"
+    regexp: 'app.listen(.*?)'
+    line: 'app.listen(80)'
 
 - name: Install Packages | bower and gulp
   command: "{{ item }}"
