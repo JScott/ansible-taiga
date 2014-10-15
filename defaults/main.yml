@@ -1,0 +1,17 @@
+---
+taiga_log_root: "{{ log_root }}/taiga"
+taiga_back_log_path: "{{ taiga_log_root }}/taiga-back.log"
+taiga_front_log_path: "{{ taiga_log_root }}/taiga-front.log"
+
+taiga_runtime_root: "{{ runtime_root }}/taiga"
+taiga_back_pidfile_path: "{{ taiga_runtime_root }}/mci-server.pid"
+taiga_front_pidfile_path: "{{ taiga_runtime_root }}/mci-worker.pid"
+
+taiga_base_install_path: /opt/taiga
+taiga_back_install_path: "{{ taiga_base_install_path }}/back"
+taiga_front_install_path: "{{ taiga_base_install_path }}/front"
+mci_server_script: "{{ mci_install_path }}/server.rb"
+mci_worker_script: "{{ mci_install_path }}/worker.rb"
+
+taiga_back_repo: https://github.com/taigaio/taiga-back.git
+taiga_front_repo: https://github.com/taigaio/taiga-front.git

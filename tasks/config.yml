@@ -1,0 +1,9 @@
+---
+- name: "Configure | taiga back | data"
+  shell: "{{ item }}"
+  with_items:
+    - python3 manage.py migrate --noinput
+    - python3 manage.py loaddata initial_user
+    - python3 manage.py loaddata initial_project_templates
+    - python3 manage.py loaddata initial_role
+    - python3 manage.py sample_data

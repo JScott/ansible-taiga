@@ -1,0 +1,82 @@
+---
+- name: "Directory Exists | taiga"
+  file:
+    state: directory
+    path: "{{ taiga_base_install_path }}"
+    owner: root
+    group: wcadmin
+    mode: 0775
+  tags:
+    - mci
+    - software-installation
+    - directory-structure
+
+- name: Install Packages | git
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    accept_hostkey: yes
+    update: yes
+    force: yes
+  with_items:
+    - { repo: "{{ taiga_back_repo }}", dest: "{{ taiga_back_install_path }}" }
+    - { repo: "{{ taiga_front_repo }}", dest: "{{ taiga_front_install_path }}" }
+  tags:
+    - taiga
+    - software-installation
+    - using-git
+    - using-github
+    - assumes-trust
+
+- name: Install Packages | apt
+  apt:
+    state: latest
+    pkg: "{{ item }}"
+  with_items:
+    - python-dev
+    - libpq-dev
+    - python3-pip
+
+- name: Install Packages | prepare for pip
+  command: "{{ item }}"
+  with_items:
+    - sudo easy_install -U pip
+    - sudo rm -rf /usr/local/lib/python3.4/dist-packages/requests*
+
+- name: Install Packages | pip
+  pip:
+    executable: /usr/bin/pip3
+    requirements: "{{ taiga_back_install_path }}/requirements.txt"
+
+- name: Install Packages | gem
+  gem:
+    state: latest
+    name: "{{ item }}"
+    user_install: no
+  with_items:
+    - sass
+    - scss-lint
+  tags:
+    - mci
+    - software-installation
+
+- name: Install Packages | npm
+  npm:
+    state: latest
+    name: "{{ item }}"
+    global: yes
+  with_items:
+    - gulp
+    - bower
+
+- name: Install Packages | npm | package.json
+  npm:
+    path: "{{ taiga_front_install_path }}"
+
+- name: Install Packages | bower and gulp
+  command: "{{ item }}"
+  args:
+    chdir: "{{ taiga_front_install_path }}"
+  with_items:
+    - bower install --allow-root
+    - gulp
