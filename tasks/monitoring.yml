@@ -1,22 +1,11 @@
 ---
-- name: Upload Config | monit | mci-server
+- name: Upload Config | monit | taiga
   template:
-    src: etc/monit/conf.d/mci-server
-    dest: /etc/monit/conf.d/mci-server
+    src: etc/monit/conf.d/taiga
+    dest: /etc/monit/conf.d/taiga
   notify: Reload Service | monit
   tags:
-    - mci
-    - mci-server
-    - monit
-
-- name: Upload Config | monit | mci-worker
-  template:
-    src: etc/monit/conf.d/mci-worker
-    dest: /etc/monit/conf.d/mci-worker
-  notify: Reload Service | monit
-  tags:
-    - mci
-    - mci-worker
+    - taiga
     - monit
 
 - name: Trigger All Callbacks

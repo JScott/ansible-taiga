@@ -72,17 +72,10 @@
   npm:
     path: "{{ taiga_front_install_path }}"
 
-- name: Configure | gulp | node listening port
-  lineinfile:
-    state: present
-    dest: "{{ taiga_front_install_path }}/gulpfile.coffee"
-    regexp: 'app.listen(.*?)'
-    line: 'app.listen(80)'
-
-- name: Install Packages | bower and gulp
-  command: "{{ item }}"
+- name: Install Packages | bower
+  ignore_errors: True
+  command: bower install --allow-root
   args:
     chdir: "{{ taiga_front_install_path }}"
-  with_items:
-    - bower install --allow-root
-    - gulp
+
+# run gulp via monit

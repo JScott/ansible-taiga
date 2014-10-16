@@ -1,6 +1,8 @@
 ---
 - name: "Configure | taiga back | data"
-  shell: "{{ item }}"
+  command: "{{ item }}"
+  args:
+    chdir: "{{ taiga_back_install_path }}"
   with_items:
     - python3 manage.py migrate --noinput
     - python3 manage.py loaddata initial_user
