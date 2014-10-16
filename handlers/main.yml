@@ -11,7 +11,7 @@
     state: restarted
     name: mci-server
   tags:
-    - monit
+    - using-monit
     - disruptive
 
 - name: Reload Service | mci-worker
@@ -19,5 +19,5 @@
     state: restarted
     name: mci-worker
   tags:
-    - monit
+    - using-monit
     - disruptive

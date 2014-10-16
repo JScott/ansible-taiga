@@ -6,7 +6,7 @@
   notify: Reload Service | monit
   tags:
     - taiga
-    - monit
+    - using-monit
 
 - name: Trigger All Callbacks
   meta: flush_handlers
