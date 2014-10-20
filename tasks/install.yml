@@ -35,14 +35,14 @@
   with_items:
     - python-dev
     - libpq-dev
-    - python3-pip
+    - python3-setuptools
 
-# This fails after succeeding once so we allow errors.
-# Running this manually seems to fix it, I think:
-# - sudo easy_install -U pip
-# - sudo rm -rf /usr/local/lib/python3.4/dist-packages/requests*
+- name: Install Pacakges | easy_install
+  easy_install:
+    executable: /usr/bin/easy_install3
+    name: pip
+
 - name: Install Packages | pip
-  ignore_errors: True
   pip:
     executable: /usr/bin/pip3
     requirements: "{{ taiga_back_install_path }}/requirements.txt"
