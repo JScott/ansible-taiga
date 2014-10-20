@@ -44,7 +44,7 @@
 
 - name: Install Packages | pip
   pip:
-    executable: /usr/bin/pip3
+    executable: /usr/local/bin/pip3
     requirements: "{{ taiga_back_install_path }}/requirements.txt"
 
 - name: Install Packages | gem
