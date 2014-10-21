@@ -1,9 +1,9 @@
 from .common import *
 
-MEDIA_URL = "{{ taiga_back_url_scheme }}://{{ taiga_back_hostname }}/media/"
-STATIC_URL = "{{ taiga_back_url_scheme }}://{{ taiga_back_hostname }}/static/"
-ADMIN_MEDIA_PREFIX = "{{ taiga_back_url_scheme }}://{{ taiga_back_hostname }}/static/admin/"
-SITES["front"]["domain"] = "{{ taiga_back_hostname }}"
+MEDIA_URL = "{{ taiga_back_url_scheme }}://{{ taiga_hostname }}:{{ taiga_port }}/media/"
+STATIC_URL = "{{ taiga_back_url_scheme }}://{{ taiga_hostname }}:{{ taiga_port }}/static/"
+ADMIN_MEDIA_PREFIX = "{{ taiga_back_url_scheme }}://{{ taiga_hostname }}:{{ taiga_port }}/static/admin/"
+SITES["front"]["domain"] = "{{ taiga_hostname }}:{{ taiga_port }}"
 
 DEBUG = True
 TEMPLATE_DEBUG = True
