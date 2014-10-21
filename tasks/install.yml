@@ -37,7 +37,7 @@
     - libpq-dev
     - python3-setuptools
 
-- name: Install Pacakges | easy_install
+- name: Install Packages | easy_install
   easy_install:
     executable: /usr/bin/easy_install3
     name: pip
@@ -73,9 +73,6 @@
     path: "{{ taiga_front_install_path }}"
 
 - name: Install Packages | bower
-  ignore_errors: True
-  command: bower install --allow-root
-  args:
-    chdir: "{{ taiga_front_install_path }}"
+  command: "cd {{ taiga_front_install_path }} && bower install --allow-root"
 
 # run gulp via monit
