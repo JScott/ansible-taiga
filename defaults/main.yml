@@ -16,3 +16,5 @@ taiga_back_repo: https://github.com/taigaio/taiga-back.git
 taiga_front_repo: https://github.com/taigaio/taiga-front.git
 
 taiga_import_sample_data: True
+taiga_database_host: localhost
+taiga_database_port: 5432
