@@ -1,19 +1,20 @@
 ---
 taiga_log_root: "{{ log_root }}/taiga"
+taiga_access_log_path: "{{ taiga_log_root }}/taiga-access.log"
+taiga_error_log_path: "{{ taiga_log_root }}/taiga-error.log"
 taiga_back_log_path: "{{ taiga_log_root }}/taiga-back.log"
-taiga_front_log_path: "{{ taiga_log_root }}/taiga-front.log"
 
 taiga_runtime_root: "{{ runtime_root }}/taiga"
-taiga_back_pidfile_path: "{{ taiga_runtime_root }}/back.pid"
 taiga_front_pidfile_path: "{{ taiga_runtime_root }}/front.pid"
+taiga_back_pidfile_path: "{{ taiga_runtime_root }}/back.pid"
 
 taiga_install_root: /opt/taiga
-taiga_back_install_path: "{{ taiga_install_root }}/back"
 taiga_front_install_path: "{{ taiga_install_root }}/front"
+taiga_back_install_path: "{{ taiga_install_root }}/back"
 taiga_data_install_path: "{{ taiga_install_root }}/data"
 
-taiga_back_repo: https://github.com/taigaio/taiga-back.git
 taiga_front_repo: https://github.com/taigaio/taiga-front.git
+taiga_back_repo: https://github.com/taigaio/taiga-back.git
 
 taiga_import_sample_data: True
 taiga_database_host: localhost

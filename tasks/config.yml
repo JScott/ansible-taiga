@@ -24,3 +24,27 @@
   shell: "perl -e 'exit 0 if -e {{ taiga_data_install_path }}/sample' && cd {{ taiga_back_install_path }} && python3 manage.py sample_data && touch {{ taiga_data_install_path }}/sample"
   ignore_errors: True
   when: taiga_import_sample_data
+
+- name: Upload Config | nginx | taiga
+  template:
+    src: etc/nginx/sites-available/taiga.conf
+    dest: /etc/nginx/sites-available/taiga.conf
+    owner: root
+    group: wcadmin
+    mode: 0664
+  notify: Reload Service | nginx
+  tags:
+    - configuration
+    - template-configuration
+    - nginx
+
+- name: Enable Config | nginx | taiga
+  file:
+    state: link
+    src: /etc/nginx/sites-available/taiga.conf
+    dest: /etc/nginx/sites-enabled/taiga
+  notify: Reload Service | nginx
+  tags:
+    - configuration
+    - enable-configuration
+    - nginx
