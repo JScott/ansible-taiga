@@ -41,36 +41,3 @@
   easy_install:
     executable: /usr/bin/easy_install3
     name: pip
-
-- name: Install Packages | pip
-  pip:
-    executable: /usr/local/bin/pip3
-    requirements: "{{ taiga_back_install_path }}/requirements.txt"
-
-- name: Install Packages | gem
-  gem:
-    state: latest
-    name: "{{ item }}"
-    user_install: no
-  with_items:
-    - sass
-    - scss-lint
-  tags:
-    - mci
-    - software-installation
-
-- name: Install Packages | npm
-  npm:
-    state: latest
-    name: "{{ item }}"
-    global: yes
-  with_items:
-    - gulp
-    - bower
-
-- name: Install Packages | npm | package.json
-  npm:
-    path: "{{ taiga_front_install_path }}"
-
-- name: Install Packages | bower
-  shell: "cd {{ taiga_front_install_path }} && bower install --allow-root"

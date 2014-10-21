@@ -9,14 +9,6 @@
   tags:
     - directory-structure
 
-- name: "Upload Config | taiga | settings"
-  template:
-    src: opt/taiga/back/settings/common.py
-    dest: "{{ taiga_back_install_path }}/settings/common.py"
-    owner: root
-    group: wcadmin
-    mode: 0664
-
 - name: "Configure | taiga back | migrate data"
   shell: "cd {{ taiga_back_install_path }} && python3 manage.py migrate --noinput"
 

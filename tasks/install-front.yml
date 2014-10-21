@@ -1,0 +1,42 @@
+---
+- name: Install Packages | gem
+  gem:
+    state: latest
+    name: "{{ item }}"
+    user_install: no
+  with_items:
+    - sass
+    - scss-lint
+  tags:
+    - software-installation
+
+- name: Install Packages | npm
+  npm:
+    state: latest
+    name: "{{ item }}"
+    global: yes
+  with_items:
+    - gulp
+    - bower
+  tags:
+    - software-installation
+
+- name: "Upload Config | taiga | front settings"
+  template:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+    owner: root
+    group: wcadmin
+    mode: 0664
+  with_items:
+    - "opt/taiga/front/conf/main.json"
+
+- name: Install Packages | npm | package.json
+  npm:
+    path: "{{ taiga_front_install_path }}"
+
+- name: Install Packages | bower
+  shell: "cd {{ taiga_front_install_path }} && bower install --allow-root"
+
+- name: Compile | gulp
+  shell: "gulp deploy --cwd {{ taiga_front_install_path }}"

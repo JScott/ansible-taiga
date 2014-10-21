@@ -1,0 +1,8 @@
+{
+    "api": "http://{{ taiga_back_hostname }}/api/v1/",
+    "eventsUrl": "ws://{{ taiga_back_hostname }}/events",
+    "debug": "true",
+    "publicRegisterEnabled": true,
+    "privacyPolicyUrl": null,
+    "termsOfServiceUrl": null
+}

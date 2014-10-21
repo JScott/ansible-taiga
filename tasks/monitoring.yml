@@ -1,9 +1,11 @@
 ---
-- name: Upload Config | monit | taiga
+- name: Upload Config | monit | taiga api
   template:
-    src: etc/monit/conf.d/taiga
-    dest: /etc/monit/conf.d/taiga
+    src: "etc/monit/conf.d/taiga-api"
+    dest: "/etc/monit/conf.d/taiga-api"
   notify: Reload Service | monit
+  with_items:
+    -
   tags:
     - taiga
     - using-monit

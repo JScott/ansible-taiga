@@ -1,4 +1,0 @@
-check process taiga with pidfile {{ taiga_front_pidfile_path }}
-  start program "/usr/bin/gulp --cwd {{ taiga_front_install_path }}"
-  stop program "/usr/bin/pkill -f gulp"
-  if 5 restarts within 5 cycles then timeout
