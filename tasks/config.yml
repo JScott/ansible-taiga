@@ -13,7 +13,7 @@
 - name: "Configure | taiga back | migrate data"
   shell: "cd {{ taiga_back_install_path }} && python3 manage.py migrate --noinput"
 
-- name: "Configure | taiga back | data"
+- name: "Configure | taiga back | initial data"
   shell: "perl -e 'exit 0 if -e {{ taiga_data_install_path }}/{{ item.track_name }}' && cd {{ taiga_back_install_path }} && {{ item.command }} && touch {{ taiga_data_install_path }}/{{ item.track_name }}"
   ignore_errors: True
   with_items:
