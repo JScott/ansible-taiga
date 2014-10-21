@@ -1,0 +1,25 @@
+---
+- name: "Directory Exists | taiga | logs"
+  file:
+    state: directory
+    path: "{{ taiga_log_root }}"
+    owner: root
+    group: wcadmin
+    mode: 0775
+  tags:
+    - software-installation
+    - directory-structure
+
+- name: "File is Writable | taiga | logs"
+  file:
+    state: touch
+    path: "{{ item }}"
+    owner: root
+    group: wcadmin
+    mode: 0664
+  with_items:
+    - "{{ taiga_access_log_path }}"
+    - "{{ taiga_error_log_path }}"
+  tags:
+    - permissions
+    - logging

@@ -7,7 +7,6 @@
     group: wcadmin
     mode: 0775
   tags:
-    - taiga
     - software-installation
     - directory-structure
 
@@ -15,14 +14,14 @@
   git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
+    version: "{{ item.tag }}"
     accept_hostkey: yes
     update: yes
     force: yes
   with_items:
-    - { repo: "{{ taiga_back_repo }}", dest: "{{ taiga_back_install_path }}" }
-    - { repo: "{{ taiga_front_repo }}", dest: "{{ taiga_front_install_path }}" }
+    - { repo: "{{ taiga_back_repo }}", dest: "{{ taiga_back_install_path }}", tag: 1.1.0 }
+    - { repo: "{{ taiga_front_repo }}", dest: "{{ taiga_front_install_path }}", tag: 1.1.1 }
   tags:
-    - taiga
     - software-installation
     - using-git
     - using-github

@@ -1,4 +1,15 @@
 ---
+- name: "Directory Exists | taiga | pidfile directory"
+  file:
+    state: directory
+    path: "{{ taiga_runtime_root }}"
+    owner: root
+    group: wcadmin
+    mode: 0775
+  tags:
+    - taiga
+    - directory-structure
+
 - name: Upload Config | monit | taiga api
   template:
     src: "etc/monit/conf.d/taiga-api"
@@ -7,7 +18,6 @@
   with_items:
     -
   tags:
-    - taiga
     - using-monit
 
 - name: Trigger All Callbacks

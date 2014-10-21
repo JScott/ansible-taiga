@@ -1,11 +1,13 @@
 ---
+# TODO: replace 'back' with 'data' because that's what it's doing
+# Then probably change data_install_path to something else too
+
 taiga_log_root: "{{ log_root }}/taiga"
 taiga_access_log_path: "{{ taiga_log_root }}/taiga-access.log"
 taiga_error_log_path: "{{ taiga_log_root }}/taiga-error.log"
-taiga_back_log_path: "{{ taiga_log_root }}/taiga-back.log"
+taiga_back_log_path: "{{ taiga_log_root }}/taiga-back.log" #unused
 
 taiga_runtime_root: "{{ runtime_root }}/taiga"
-taiga_front_pidfile_path: "{{ taiga_runtime_root }}/front.pid"
 taiga_back_pidfile_path: "{{ taiga_runtime_root }}/back.pid"
 
 taiga_install_root: /opt/taiga
@@ -22,5 +24,5 @@ taiga_database_port: 5432
 
 taiga_hostname: localhost
 taiga_port: 80
-taiga_back_url_scheme: http
+taiga_url_scheme: http
 taiga_from_email_address: no-reply@example.com
