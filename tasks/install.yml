@@ -2,7 +2,7 @@
 - name: "Directory Exists | taiga"
   file:
     state: directory
-    path: "{{ taiga_base_install_path }}"
+    path: "{{ taiga_install_root }}"
     owner: root
     group: wcadmin
     mode: 0775
