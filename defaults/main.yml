@@ -22,7 +22,7 @@ taiga_import_sample_data: True
 taiga_database_host: localhost
 taiga_database_port: 5432
 
-taiga_hostname: localhost
+taiga_hostname: "{{ role }}.{{ project }}-{{ environment_tier }}.teluswebteam.com"
 taiga_port: 80
 taiga_url_scheme: http
 taiga_from_email_address: no-reply@example.com
