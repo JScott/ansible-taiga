@@ -1,9 +1,27 @@
 ---
+- name: "Directory Exists | taiga | data"
+  file:
+    state: directory
+    path: "{{ taiga_data_install_path }}"
+    owner: root
+    group: wcadmin
+    mode: 0755
+  tags:
+    - taiga
+    - directory-structure
+
+- name: "Configure | taiga back | migrate data"
+  shell: "cd {{ taiga_back_install_path }} && python3 manage.py migrate --noinput"
+
 - name: "Configure | taiga back | data"
-  shell: "cd {{ taiga_back_install_path }} && {{ item }}"
+  shell: "perl -e 'exit 0 if -e {{ taiga_data_install_path }}/{{ item.track_name }}' && cd {{ taiga_back_install_path }} && {{ item.command }} && touch {{ taiga_data_install_path }}/{{ item.track_name }}"
+  ignore_errors: True
   with_items:
-    - python3 manage.py migrate --noinput
-    - python3 manage.py loaddata initial_user
-    - python3 manage.py loaddata initial_project_templates
-    - python3 manage.py loaddata initial_role
-    - python3 manage.py sample_data
+    - { command: "python3 manage.py loaddata initial_user", track_name: user }
+    - { command: "python3 manage.py loaddata initial_project_templates", track_name: projects }
+    - { command: "python3 manage.py loaddata initial_role", track_name: role}
+
+- name: "Configure | taiga back | sample data"
+  shell: "perl -e 'exit 0 if -e {{ taiga_data_install_path }}/sample' && cd {{ taiga_back_install_path }} && python3 manage.py sample_data && touch {{ taiga_data_install_path }}/sample"
+  ignore_errors: True
+  when: taiga_import_sample_data

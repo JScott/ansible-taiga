@@ -7,7 +7,7 @@
     group: wcadmin
     mode: 0775
   tags:
-    - mci
+    - taiga
     - software-installation
     - directory-structure
 
@@ -16,8 +16,8 @@
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
     accept_hostkey: yes
-    update: yes
-    force: yes
+    update: yes #no
+    force: yes #no
   with_items:
     - { repo: "{{ taiga_back_repo }}", dest: "{{ taiga_back_install_path }}" }
     - { repo: "{{ taiga_front_repo }}", dest: "{{ taiga_front_install_path }}" }
@@ -73,6 +73,6 @@
     path: "{{ taiga_front_install_path }}"
 
 - name: Install Packages | bower
-  command: "cd {{ taiga_front_install_path }} && bower install --allow-root"
+  shell: "cd {{ taiga_front_install_path }} && bower install --allow-root"
 
 # run gulp via monit

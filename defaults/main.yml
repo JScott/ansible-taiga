@@ -10,6 +10,9 @@ taiga_front_pidfile_path: "{{ taiga_runtime_root }}/front.pid"
 taiga_install_root: /opt/taiga
 taiga_back_install_path: "{{ taiga_install_root }}/back"
 taiga_front_install_path: "{{ taiga_install_root }}/front"
+taiga_data_install_path: "{{ taiga_install_root }}/data"
 
 taiga_back_repo: https://github.com/taigaio/taiga-back.git
 taiga_front_repo: https://github.com/taigaio/taiga-front.git
+
+taiga_import_sample_data: True
