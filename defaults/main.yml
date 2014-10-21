@@ -8,8 +8,8 @@ taiga_back_pidfile_path: "{{ taiga_runtime_root }}/back.pid"
 taiga_front_pidfile_path: "{{ taiga_runtime_root }}/front.pid"
 
 taiga_install_root: /opt/taiga
-taiga_back_install_path: "{{ taiga_base_install_path }}/back"
-taiga_front_install_path: "{{ taiga_base_install_path }}/front"
+taiga_back_install_path: "{{ taiga_install_root }}/back"
+taiga_front_install_path: "{{ taiga_install_root }}/front"
 
 taiga_back_repo: https://github.com/taigaio/taiga-back.git
 taiga_front_repo: https://github.com/taigaio/taiga-front.git
