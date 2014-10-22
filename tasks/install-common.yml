@@ -35,6 +35,7 @@
     - python-dev
     - libpq-dev
     - python3-setuptools
+    - python3-dev
 
 - name: Install Packages | easy_install
   easy_install:
