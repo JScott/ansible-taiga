@@ -3,3 +3,5 @@ dependencies:
   - role: package/ruby
   - role: package/nodejs
   - role: package/nginx
+  - role: package/postgres
+    postgres_client: yes
