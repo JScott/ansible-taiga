@@ -25,4 +25,7 @@ taiga_database_port: 5432
 taiga_hostname: "{{ role }}.{{ project }}-{{ environment_tier }}.teluswebteam.com"
 taiga_port: 80
 taiga_url_scheme: http
+
 taiga_from_email_address: no-reply@example.com
+taiga_email_host: localhost
+taiga_email_port: 25
