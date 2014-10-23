@@ -21,6 +21,8 @@ taiga_back_repo: https://github.com/taigaio/taiga-back.git
 taiga_import_sample_data: True
 taiga_database_host: localhost
 taiga_database_port: 5432
+taiga_database_password: ''
+taiga_database_username: "{{ project }}"
 
 taiga_hostname: "{{ role }}.{{ project }}-{{ environment_tier }}.teluswebteam.com"
 taiga_port: 80

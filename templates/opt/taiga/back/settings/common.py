@@ -34,9 +34,9 @@ LANGUAGES = (
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "{{ database_username | default(project) }}",
-        'USER': '{{ database_username | default(project) }}',
-        'PASSWORD': '{{ database_password }}',
+        "NAME": "{{ taiga_database_username }}",
+        'USER': '{{ taiga_database_username }}',
+        'PASSWORD': '{{ taiga_database_password }}',
         'HOST': '{{ taiga_database_host }}',
         'PORT': '{{ taiga_database_port }}',
     }
