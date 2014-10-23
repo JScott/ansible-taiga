@@ -19,8 +19,8 @@
     update: yes
     force: yes
   with_items:
-    - { repo: "{{ taiga_back_repo }}", dest: "{{ taiga_back_install_path }}", tag: 1.1.0 }
-    - { repo: "{{ taiga_front_repo }}", dest: "{{ taiga_front_install_path }}", tag: 1.1.1 }
+    - { repo: "{{ taiga_back_repo }}", dest: "{{ taiga_back_install_path }}", tag: "{{ taiga_back_version }}" }
+    - { repo: "{{ taiga_front_repo }}", dest: "{{ taiga_front_install_path }}", tag: "{{ taiga_front_version }}" }
   tags:
     - software-installation
     - using-git
