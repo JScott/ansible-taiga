@@ -17,7 +17,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = "{{ taiga_email_host }}"
 EMAIL_HOST_USER = "{{ taiga_aws_access_key_id }}"
 EMAIL_HOST_PASSWORD = "{{ taiga_aws_secret_access_key }}"
-EMAIL_PORT = '"{{ taiga_email_port }}"'
+EMAIL_PORT = "{{ taiga_email_port }}"
 
 REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
     "rest_framework.renderers.JSONRenderer",
