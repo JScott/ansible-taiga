@@ -1,5 +1,5 @@
 ---
-- name: "Directory Exists | taiga | data"
+- name: Directory Exists | taiga | data
   file:
     state: directory
     path: "{{ taiga_data_install_path }}"
@@ -9,28 +9,24 @@
   tags:
     - directory-structure
 
-- name: "Configure | taiga back | migrate data"
+- name: Configure | taiga back | migrate schema
   shell: "cd {{ taiga_back_install_path }} && python3 manage.py migrate --noinput"
 
-- name: "Configure | taiga back | initial data"
+- name: Configure | taiga back | initial data
   shell: >
-    "perl -e \"if (-e '{{ taiga_data_install_path }}/{{ item.track_name }}') { exit 1; }\" &&
-    cd {{ taiga_back_install_path }} &&
-    {{ item.command }} &&
-    touch {{ taiga_data_install_path }}/{{ item.track_name }}"
-  ignore_errors: True
+    chdir={{ taiga_back_install_path }}
+    creates={{ taiga_data_install_path }}/{{ item }}
+    python3 manage.py loaddata initial_{{ item }} && touch {{ taiga_data_install_path }}/{{ item }}
   with_items:
-    - { command: "python3 manage.py loaddata initial_user", track_name: user }
-    - { command: "python3 manage.py loaddata initial_project_templates", track_name: projects }
-    - { command: "python3 manage.py loaddata initial_role", track_name: role}
+    - user
+    - project_templates
+    - role
 
-- name: "Configure | taiga back | initial data"
+- name: Configure | taiga back | sample data
   shell: >
-    "perl -e \"if (-e '{{ taiga_data_install_path }}/sample') { exit 1; }\" &&
-    cd {{ taiga_back_install_path }} &&
-    python3 manage.py sample_data &&
-    touch {{ taiga_data_install_path }}/sample"
-  ignore_errors: True
+    chdir={{ taiga_back_install_path }}
+    creates={{ taiga_data_install_path }}/sample
+    python3 manage.py loaddata sample_data && touch {{ taiga_data_install_path }}/sample
   when: taiga_import_sample_data
 
 - name: Upload Config | nginx | taiga
