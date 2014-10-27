@@ -26,7 +26,7 @@ taiga_database_port: 5432
 taiga_database_password: ''
 taiga_database_username: "{{ project }}"
 
-taiga_hostname: "application.{{ project }}-{{ environment_tier }}.teluswebteam.com"
+taiga_hostname: "{% if environment_tier in ['production'] %}application-direct{% else %}application{% endif %}.{{ project }}-{{ environment_tier }}.teluswebteam.com"
 taiga_port: 80
 taiga_url_scheme: http
 
