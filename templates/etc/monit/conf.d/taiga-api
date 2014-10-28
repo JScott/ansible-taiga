@@ -1,4 +1,0 @@
-check process taiga-api with pidfile {{ taiga_back_pidfile_path }}
-  start program "/usr/local/bin/gunicorn -w 3 -t 60 --pythonpath={{ taiga_back_install_path }} -b 0.0.0.0:8001 --pid {{ taiga_back_pidfile_path }} taiga.wsgi"
-  stop program "/usr/bin/pkill -f gunicorn"
-  if 5 restarts within 5 cycles then timeout
