@@ -3,8 +3,8 @@ dependencies:
   - role: meta/monitor
     monitor_name: taiga-api
     monitor_pidfile: "{{ taiga_back_pidfile_path }}"
-    monitor_start_command: "/usr/local/bin/gunicorn -w 3 -t 60 --pythonpath={{ taiga_back_install_path }} -b 0.0.0.0:8001 -- --pid {{ taiga_back_pidfile_path }} taiga.wsgi"
-    monitor_stop_command: usr/bin/pkill -f gunicorn
+    monitor_start_command: "/usr/local/bin/gunicorn --pythonpath {{ taiga_back_install_path }} --config {{ taiga_back_install_path }}/settings/gunicorn.conf.py taiga.wsgi"
+    monitor_stop_command: "/bin/kill `/bin/cat {{ taiga_back_pidfile_path }}`"
   - role: package/ruby
   - role: package/nodejs
   - role: package/nginx

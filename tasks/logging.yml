@@ -18,8 +18,10 @@
     group: wcadmin
     mode: 0664
   with_items:
-    - "{{ taiga_access_log_path }}"
-    - "{{ taiga_error_log_path }}"
+    - "{{ taiga_front_access_log_path }}"
+    - "{{ taiga_front_error_log_path }}"
+    - "{{ taiga_back_access_log_path }}"
+    - "{{ taiga_back_error_log_path }}"
   tags:
     - permissions
     - logging
