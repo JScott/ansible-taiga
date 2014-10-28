@@ -3,5 +3,4 @@
 - include: install-front.yml
 - include: install-back.yml
 - include: config.yml
-- include: monitoring.yml
 - include: logging.yml
