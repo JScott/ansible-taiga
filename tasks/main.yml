@@ -2,5 +2,5 @@
 - include: install-common.yml
 - include: install-front.yml
 - include: install-back.yml
-- include: config.yml
+- include: configure.yml
 - include: logging.yml
