@@ -6,7 +6,13 @@ dependencies:
     monitor_start_command: "/usr/local/bin/gunicorn --pythonpath {{ taiga_back_install_path }} --config {{ taiga_back_install_path }}/settings/gunicorn.conf.py taiga.wsgi"
     monitor_stop_command: "/bin/kill `/bin/cat {{ taiga_back_pidfile_path }}`"
   - role: package/ruby
+    ruby_gems:
+      - sass
+      - scss-lint
   - role: package/nodejs
+    node_packages:
+      - gulp
+      - bower
   - role: package/nginx
   - role: package/postgres
     postgres_client: yes
