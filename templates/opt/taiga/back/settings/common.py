@@ -34,11 +34,7 @@ LANGUAGES = (
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "{{ taiga_database_username }}",
-        'USER': '{{ taiga_database_username }}',
-        'PASSWORD': '{{ taiga_database_password }}',
-        'HOST': '{{ taiga_database_host }}',
-        'PORT': '{{ taiga_database_port }}',
+        "NAME": "taiga",
     }
 }
 
@@ -198,11 +194,13 @@ INSTALLED_APPS = [
     "taiga.mdrender",
     "taiga.export_import",
     "taiga.feedback",
+    "taiga.github_hook",
 
     "rest_framework",
     "djmail",
     "django_jinja",
     "easy_thumbnails",
+    "raven.contrib.django.raven_compat",
 ]
 
 WSGI_APPLICATION = "taiga.wsgi.application"
@@ -334,6 +332,18 @@ TAGS_PREDEFINED_COLORS = ["#fce94f", "#edd400", "#c4a000", "#8ae234",
 # Feedback module settings
 FEEDBACK_ENABLED = True
 FEEDBACK_EMAIL = "support@taiga.io"
+
+# 0 notifications will work in a synchronous way
+# >0 an external process will check the pending notifications and will send them
+# collapsed during that interval
+CHANGE_NOTIFICATIONS_MIN_INTERVAL = 0 #seconds
+
+
+# List of functions called for filling correctly the ProjectModulesConfig associated to a project
+# This functions should receive a Project parameter and return a dict with the desired configuration
+PROJECT_MODULES_CONFIGURATORS = {
+    "github": "taiga.github_hook.services.get_or_generate_config",
+}
 
 
 # NOTE: DON'T INSERT MORE SETTINGS AFTER THIS LINE

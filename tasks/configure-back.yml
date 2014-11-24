@@ -1,0 +1,28 @@
+---
+- name: "Upload Config | taiga back | settings/local.py"
+  template:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+    owner: root
+    group: wcadmin
+    mode: 0664
+  notify: Reload Service | taiga-api
+  with_items:
+    - "opt/taiga/back/settings/local.py"
+
+- name: Configure | taiga back | settings/common.py
+  lineinfile:
+    state: present
+    dest: "{{ taiga_back_install_path }}/settings/common.py"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    backrefs: yes
+  notify: Reload Service | taiga-api
+  with_items:
+    - { regexp: "^(.*)localhost:8000(.*)$", line: "\\1{{ taiga_hostname }}:{{ taiga_port }}\\2" }
+    - { regexp: "^(.*)localhost:9001(.*)$", line: "\\1{{ taiga_hostname }}:{{ taiga_port }}\\2" }
+  tags:
+    - configuration
+    - precise-configuration
+    - networking
+    - interface-binding

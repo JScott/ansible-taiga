@@ -1,6 +1,6 @@
 ---
-- include: install-common.yml
-- include: install-front.yml
-- include: install-back.yml
-- include: configure.yml
+- include: install.yml
+- include: configure-front.yml
+- include: configure-back.yml
+- include: configure-common.yml
 - include: logging.yml

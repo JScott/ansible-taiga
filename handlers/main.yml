@@ -1,0 +1,8 @@
+---
+- name: Reload Service | taiga-api
+  monit:
+    state: restarted
+    name: taiga-api
+  tags:
+    - using-monit
+    - disruptive
