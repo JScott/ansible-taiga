@@ -4,7 +4,7 @@ dependencies:
     monitor_name: taiga-api
     monitor_pidfile: "{{ taiga_back_pidfile_path }}"
     monitor_start_command: "/usr/local/bin/gunicorn --pythonpath {{ taiga_back_install_path }} --config {{ taiga_back_install_path }}/settings/gunicorn.conf.py taiga.wsgi"
-    monitor_stop_command: "/bin/kill `/bin/cat {{ taiga_back_pidfile_path }}`"
+    monitor_stop_command: "/bin/kill -9 `/bin/cat {{ taiga_back_pidfile_path }}`"
   - role: package/ruby
     ruby_gems:
       - sass
