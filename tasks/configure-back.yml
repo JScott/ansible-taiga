@@ -11,18 +11,14 @@
     - "opt/taiga/back/settings/local.py"
 
 - name: Configure | taiga back | settings/common.py
-  lineinfile:
-    state: present
+  replace:
     dest: "{{ taiga_back_install_path }}/settings/common.py"
     regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
-    backrefs: yes
+    replace: "{{ item.replace }}"
   notify: Reload Service | taiga-api
   with_items:
-    - { regexp: "^(.*)localhost:8000(.*)$", line: "\\1{{ taiga_hostname }}:{{ taiga_port }}\\2" }
-    - { regexp: "^(.*)localhost:9001(.*)$", line: "\\1{{ taiga_hostname }}:{{ taiga_port }}\\2" }
+    - { regexp: "localhost:8000", replace: "{{ taiga_hostname }}:{{ taiga_port }}" }
+    - { regexp: "localhost:9001", replace: "{{ taiga_hostname }}:{{ taiga_port }}" }
   tags:
     - configuration
     - precise-configuration
-    - networking
-    - interface-binding
