@@ -16,3 +16,5 @@ dependencies:
   - role: package/nginx
   - role: package/postgres
     postgres_client: yes
+  - role: package/logrotate
+    logrotate_name: taiga
