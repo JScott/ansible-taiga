@@ -21,11 +21,13 @@ taiga_back_repo: https://github.com/taigaio/taiga-back.git
 taiga_front_version: 1.3.0
 taiga_back_version: 1.3.0
 
-taiga_import_sample_data: True
+taiga_import_sample_data: 'True'
 taiga_database_host: localhost
 taiga_database_port: 5432
 taiga_database_password: ''
 taiga_database_username: "{{ project }}"
+
+taiga_public_register_enabled: False
 
 taiga_hostname: "{% if environment_tier in ['production'] %}application-direct{% else %}application{% endif %}.{{ project }}-{{ environment_tier }}.{{ domain }}"
 taiga_port: 80

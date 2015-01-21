@@ -13,4 +13,4 @@
 
 
 - name: Configure | taiga-front | conf/main.json
-  command: "mv {{ taiga_front_install_path }}/conf/main.example.json {{ taiga_front_install_path }}/conf/main.json"
+  command: "cp {{ taiga_front_install_path }}/conf/main.example.json {{ taiga_front_install_path }}/conf/main.json"

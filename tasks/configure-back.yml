@@ -19,6 +19,7 @@
   with_items:
     - { regexp: "localhost:8000", replace: "{{ taiga_hostname }}:{{ taiga_port }}" }
     - { regexp: "localhost:9001", replace: "{{ taiga_hostname }}:{{ taiga_port }}" }
+    - { regexp: "^PUBLIC_REGISTER_ENABLED.*$", replace: "PUBLIC_REGISTER_ENABLED = {{ taiga_public_register_enabled }}" }
   tags:
     - configuration
     - precise-configuration
