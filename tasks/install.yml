@@ -64,5 +64,5 @@
 
 - name: Install Packages | pip
   pip:
-    executable: /usr/local/bin/pip3
+    executable: /usr/bin/pip3
     requirements: "{{ taiga_back_install_path }}/requirements.txt"
