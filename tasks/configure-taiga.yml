@@ -1,0 +1,52 @@
+---
+- name: "Upload Config | taiga back | settings/local.py"
+  template:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+    owner: root
+    group: wcadmin
+    mode: 0664
+  notify: Reload Service | taiga
+  with_items:
+    - "opt/taiga/back/settings/local.py"
+
+- name: Configure | taiga back | settings/common.py
+  replace:
+    dest: "{{ taiga_back_install_path }}/settings/common.py"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  notify: Reload Service | taiga
+  with_items:
+    - { regexp: "localhost:8000", replace: "{{ taiga_hostname }}:{{ taiga_port }}" }
+    - { regexp: "localhost:9001", replace: "{{ taiga_hostname }}:{{ taiga_port }}" }
+    - { regexp: "^PUBLIC_REGISTER_ENABLED.*$", replace: "PUBLIC_REGISTER_ENABLED = {{ taiga_public_register_enabled }}" }
+  tags:
+    - configuration
+    - precise-configuration
+
+- name: Upload Config | gunicorn
+  template:
+    src: opt/taiga/back/settings/gunicorn.conf.py
+    dest: "{{ taiga_back_install_path }}/settings/gunicorn.conf.py"
+    owner: root
+    group: wcadmin
+    mode: 0664
+  tags:
+    - configuration
+    - template-configuration
+    - gunicorn  
+
+- name: Configure | taiga front | dist/js/conf.example.json
+  replace:
+    dest: "{{ taiga_front_install_path }}/dist/js/conf.example.json"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  notify: Reload Service | taiga
+  with_items:
+    - { regexp: "localhost:8000", replace: "{{ taiga_hostname }}:{{ taiga_port }}" }
+  tags:
+    - configuration
+    - precise-configuration
+
+- name: Configure | taiga-front | dist/js/conf.json
+  command: "cp {{ taiga_front_install_path }}/dist/js/conf.example.json {{ taiga_front_install_path }}/dist/js/conf.json"

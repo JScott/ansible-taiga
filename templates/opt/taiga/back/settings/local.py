@@ -1,24 +1,6 @@
-# OLD BITS, DEPRECATE:
-
-# from .common import *
-
-# MEDIA_URL = "{{ taiga_url_scheme }}://{{ taiga_hostname }}:{{ taiga_port }}/media/"
-# STATIC_URL = "{{ taiga_url_scheme }}://{{ taiga_hostname }}:{{ taiga_port }}/static/"
-# ADMIN_MEDIA_PREFIX = "{{ taiga_url_scheme }}://{{ taiga_hostname }}:{{ taiga_port }}/static/admin/"
-# SITES["front"]["domain"] = "{{ taiga_hostname }}:{{ taiga_port }}"
-
-# DEBUG = True
-# TEMPLATE_DEBUG = True
-# PUBLIC_REGISTER_ENABLED = True
-
-# REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
-#     "rest_framework.renderers.JSONRenderer",
-# )
-
-
 # Copyright (C) 2014 Andrey Antukh <niwi@niwi.be>
-# Copyright (C) 2014 Jesús Espino <jespinog@gmail.com>
-# Copyright (C) 2014 David Barragán <bameda@dbarragan.com>
+# Copyright (C) 2014 JesÃºs Espino <jespinog@gmail.com>
+# Copyright (C) 2014 David BarragÃ¡n <bameda@dbarragan.com>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -42,8 +24,8 @@ DATABASES = {
         'PASSWORD': '{{ taiga_database_password }}',
         'HOST': '{{ taiga_database_host }}',
         'PORT': '{{ taiga_database_port }}',
-    }
-}
+    }   
+}   
 
 HOST="http://{{ taiga_hostname }}:{{ taiga_port }}"
 
@@ -57,6 +39,13 @@ EMAIL_HOST_USER = "{{ taiga_aws_access_key_id }}"
 EMAIL_HOST_PASSWORD = "{{ taiga_aws_secret_access_key }}"
 EMAIL_PORT = "{{ taiga_email_port }}"
 DEFAULT_FROM_EMAIL = "{{ taiga_from_email_address }}"
+
+# THROTTLING
+#REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {
+#    "anon": "20/min",
+#    "user": "200/min",
+#    "import-mode": "20/sec"
+#}
 
 # GITHUB SETTINGS
 #GITHUB_URL = "https://github.com/"

@@ -1,18 +1,27 @@
 ---
 dependencies:
   - role: meta/monitor
-    monitor_name: taiga-api
+    monitor_name: taiga
     monitor_pidfile: "{{ taiga_back_pidfile_path }}"
     monitor_start_command: "/usr/local/bin/gunicorn --pythonpath {{ taiga_back_install_path }} --config {{ taiga_back_install_path }}/settings/gunicorn.conf.py taiga.wsgi"
     monitor_stop_command: "/bin/kill `/bin/cat {{ taiga_back_pidfile_path }}`"
-  - role: package/ruby
-    ruby_gems:
-      - sass
-      - scss-lint
-  - role: package/nodejs
-    node_packages:
-      - gulp
-      - bower
+  - role: package/python
+    python_build_dependencies:
+    - binutils-doc
+    - autoconf
+    - flex
+    - bison
+    - libjpeg-dev
+    - libfreetype6-dev
+    - zlib1g-dev
+    - libzmq3-dev
+    - libgdbm-dev
+    - libncurses5-dev
+    - automake
+    - libtool
+    - libffi-dev
+    - libxml2-dev
+    - libxslt-dev
   - role: package/nginx
   - role: package/postgres
     postgres_client: yes

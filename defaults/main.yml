@@ -8,7 +8,7 @@ taiga_front_error_log_path: "{{ taiga_log_root }}/front-error.log"
 taiga_back_access_log_path: "{{ taiga_log_root }}/back-access.log"
 taiga_back_error_log_path: "{{ taiga_log_root }}/back-error.log"
 
-taiga_runtime_root: "{{ runtime_root | default('/var/run') }}/taiga-api"
+taiga_runtime_root: "{{ runtime_root | default('/var/run') }}/taiga"
 taiga_back_pidfile_path: "{{ taiga_runtime_root }}/back.pid"
 
 taiga_install_root: /opt/taiga
@@ -16,10 +16,10 @@ taiga_front_install_path: "{{ taiga_install_root }}/front"
 taiga_back_install_path: "{{ taiga_install_root }}/back"
 taiga_data_install_path: "{{ taiga_install_root }}/data"
 
-taiga_front_repo: https://github.com/taigaio/taiga-front.git
+taiga_front_repo: https://github.com/taigaio/taiga-front-dist.git
 taiga_back_repo: https://github.com/taigaio/taiga-back.git
-taiga_front_version: 1.3.0
-taiga_back_version: 1.3.0
+taiga_front_version: 1.5.0
+taiga_back_version: 1.5.0
 
 taiga_import_sample_data: 'True'
 taiga_database_host: localhost

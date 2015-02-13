@@ -1,5 +1,5 @@
 ---
-- name: "Directory Exists | taiga"
+- name: Directory Exists | taiga
   file:
     state: directory
     path: "{{ taiga_install_root }}"
@@ -27,45 +27,20 @@
     - using-github
     - assumes-trust
 
-- name: Install Packages | apt
-  apt:
-    state: latest
-    pkg: "{{ item }}"
-  with_items:
-    - python-dev
-    - libpq-dev
-    - python3-setuptools
-    - python3-dev
-
-- name: Install Packages | easy_install
-  easy_install:
-    executable: /usr/bin/easy_install3
-    name: pip
-
-
-# taiga/front
-
-
-- name: Install Packages | npm | package.json
-  shell: "cd {{ taiga_front_install_path }} && npm install"
-  # Fails to install certain packages when done through ansible module
-  #npm:
-  #  path: "{{ taiga_front_install_path }}"
-
-- name: Install Packages | bower
-  shell: "cd {{ taiga_front_install_path }} && bower install --allow-root"
-
-- name: Compile | gulp
-  shell: "gulp deploy --cwd {{ taiga_front_install_path }}"
-
-
-# taiga/back
-
+- name: Use a newer version of django-transactional-cleanup
+  replace:
+    dest: "{{ taiga_back_install_path }}/requirements.txt"
+    regexp: django-transactional-cleanup==0.1.12
+    replace: django-transactional-cleanup==0.1.13
+  tags:
+    - configuration
+    - precise-configuration
 
 - name: Install Packages | pip
   pip:
-    executable: /usr/bin/pip3
+    #executable: /usr/bin/pip3
+    #executable: /usr/local/bin/pip3
     requirements: "{{ taiga_back_install_path }}/requirements.txt"
   tags:
-    - software-installation
+    - software-installation   
     - using-pip

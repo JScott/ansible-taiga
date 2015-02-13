@@ -1,6 +1,5 @@
 ---
 - include: install.yml
-- include: configure-front.yml
-- include: configure-back.yml
-- include: configure-common.yml
+- include: configure-taiga.yml
+- include: configure-external.yml
 - include: logging.yml
