@@ -1,8 +1,7 @@
 ---
 - name: Reload Service | taiga
-  monit:
-    state: restarted
+  service:
+    state: reloaded
     name: taiga
   tags:
-    - using-monit
     - disruptive
