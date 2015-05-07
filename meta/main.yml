@@ -1,15 +1,14 @@
 ---
 galaxy_info:
-  author: Justin Scott
-  description: Taiga - a fantastic Agile project management tool that assists your process instead of altering it.
-  license: GPL Affero
+  author: "Justin Scott"
+  description: "A fantastic Agile project management tool that assists your process instead of altering it."
+  license: "GPL Affero"
   platforms:
-    - name: Ubuntu
+    - name: "Ubuntu"
       versions:
-        - trusty
+        - "trusty"
   categories:
-    - system
-    - development
+    - "web"
 dependencies:
   - role: telusdigital.upstart
     upstart_name: taiga
