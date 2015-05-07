@@ -21,12 +21,12 @@ Tunables
 * `taiga_back_repo` (string) - The git repo to clone the back-end code from.
 * `taiga_front_version` (string) - The version of the front-end to clone.
 * `taiga_back_version` (string) - The version of the back-end to clone.
-* `taiga_import_sample_data` (boolean) - Whether or not to migrate Taiga's sample data on installation.
+* `taiga_import_sample_data` (boolean) - Migrate Taiga's sample data on installation?
 * `taiga_database_host` (string) - The host Taiga will use for it's database.
 * `taiga_database_port` (string) - The port Taiga will use for it's database.
 * `taiga_database_password` (string) - The password Taiga will use for it's database.
 * `taiga_database_username` (string) - The username Taiga will use for it's database.
-* `taiga_public_register_enabled` (string) - Whether or not to allow public user registration.
+* `taiga_public_register_enabled` (boolean) - Allow public user registration?
 * `taiga_hostname` (string) - The hostname of the server that Taiga is running on.
 * `taiga_port` (integer) - The port that Taiga is running on.
 * `taiga_url_scheme` (string) - The URL scheme that Taiga is served on (e.g. "http").
