@@ -1,6 +1,6 @@
 # ansible-taiga
 
-[Taiga](https://taiga.io) - Taiga | Taiga.Io | Agile, Open Source, Free Project Management System
+[Taiga](https://taiga.io) - Taiga | Agile, Open Source, Free Project Management System
 
 [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
 
