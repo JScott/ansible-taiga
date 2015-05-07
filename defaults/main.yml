@@ -1,6 +1,6 @@
 ---
-# TODO: replace 'back' with 'data' because that's what it's doing
-# Then probably change data_install_path to something else too
+# TODO: reconsider the name of `data_install_path`
+# TODO: combine a lot of front- and back-end variables. Needlessly complex
 
 taiga_log_root: "{{ log_root | default('/var/log') }}/taiga"
 taiga_front_access_log_path: "{{ taiga_log_root }}/front-access.log"
