@@ -1,6 +1,17 @@
 ---
+galaxy_info:
+  author: Justin Scott
+  description: Taiga - a fantastic Agile project management tool that assists your process instead of altering it.
+  license: GPL Affero
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+  categories:
+    - system
+    - development
 dependencies:
-  - role: package/upstart
+  - role: telusdigital.upstart
     upstart_name: taiga
     upstart_description: taiga-api
     upstart_exec_path: /usr/local/bin/gunicorn
@@ -8,7 +19,7 @@ dependencies:
       - "--pythonpath {{ taiga_back_install_path }}"
       - "--config {{ taiga_back_install_path }}/settings/gunicorn.conf.py"
       - taiga.wsgi
-  - role: package/python
+  - role: telusdigital.python
     python_build_dependencies:
       - binutils-doc
       - autoconf
@@ -25,8 +36,8 @@ dependencies:
       - libffi-dev
       - libxml2-dev
       - libxslt-dev
-  - role: package/nginx
-  - role: package/postgres
+  - role: telusdigital.nginx
+  - role: telusdigital.postgres
     postgres_client: yes
-  - role: package/logrotate
+  - role: telusdigital.logrotate
     logrotate_name: taiga
