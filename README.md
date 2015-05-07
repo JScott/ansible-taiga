@@ -44,7 +44,15 @@
 ```
 - hosts: servers
   roles:
-    - role: telusdigital.kibana
+    - role: package/taiga
+      taiga_hostname: "mytaiga.com"
+      taiga_database_host: "db.mytaiga.com"
+      taiga_database_port: 5432
+      taiga_database_password: "mysecretpassword"
+      taiga_import_sample_data: False
+      taiga_from_email_address: justin.scott1@telus.com
+      taiga_email_host: mail.mytaiga.com
+      taiga_public_register_enabled: 'True'
 ```
 
 ## License
